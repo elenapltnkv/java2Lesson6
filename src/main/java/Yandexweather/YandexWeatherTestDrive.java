@@ -42,6 +42,7 @@ X-Yandex-API-Key: <a653e609-ef9b-4cb8-b198-a04108bceafb>*/
                     .build();
             Response response = okHttpClient.newCall(request).execute();
             String body = response.body().string();
+            System.out.println(response.body().string());
 
         }
 }
