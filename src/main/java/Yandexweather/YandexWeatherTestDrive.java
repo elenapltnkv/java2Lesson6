@@ -26,7 +26,7 @@ X-Yandex-API-Key: <a653e609-ef9b-4cb8-b198-a04108bceafb>*/
 
             OkHttpClient okHttpClient = new OkHttpClient();
 
-            String requestBody = "GET https://weather.yandex.ru/v2/informers?lat=54.70739&lon=20.507307&extra=true" +
+            String requestBody = "GET https://api.weather.yandex.ru/v2/informers?lat=54.70739&lon=20.507307&extra=true" +
                     " & [lang=<\"ru_RU\">]\n" +
                     " & [limit=<7>]\n" +
                     " & [hours=<«true»>]\n" +
@@ -35,8 +35,10 @@ X-Yandex-API-Key: <a653e609-ef9b-4cb8-b198-a04108bceafb>*/
                     "X-Yandex-API-Key: <a653e609-ef9b-4cb8-b198-a04108bceafb>";
 
             MediaType JSON = MediaType.parse("JSON");
+            RequestBody requestBodyWeather = RequestBody.create(requestBody, JSON);
             Request request = new Request.Builder()
-                    .url("https://api.weather.yandex.ru")
+                    .url("https://api.weather.yandex.ru/v2/forecast?")
+                    .post(requestBodyWeather)
                     .build();
             Response response = okHttpClient.newCall(request).execute();
             String body = response.body().string();
